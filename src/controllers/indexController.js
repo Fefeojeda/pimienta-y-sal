@@ -1,10 +1,15 @@
-const platos_db=require('../data/platos_db')
+const platos = require('../data/platos_db')
 
 module.exports = {
-    index: (req,res) => {
-        return res.render('index',{
-            platos : platos_db
+    index: (req, res) => {
+        return res.render('index', {
+            platos: platos
         })
-        } ,
-    detail: (req,res) => res.render('detalleMenu')
+    },
+    detail: (req, res) => {
+        let plato = platos.find(plato => plato.id === +req.params.id);
+        
+        return res.render('detalleMenu', {
+            plato,})
+    }
 }
